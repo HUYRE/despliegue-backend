@@ -1,11 +1,14 @@
-require('dotenv').config() 
-const http= require('http') 
-function requestController(){ 
-console.log('Bienvenidos al curso') 
-} 
-const server=http.createServer (requestController) 
-const PORT=process.env.PORT 
-server.listen (PORT, function(){ 
-    console.log(`Aplicación corriendo en el puerto: ${PORT}`);
+require('dotenv').config();
+const express = require('express');
+const app = express();
+
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bienvenidos al curso');
 });
-// Archivo de inicio 
+
+// 🔴 ESTA ES LA CLAVE: usar 0.0.0.0 como host
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Aplicación corriendo en el puerto: ${port}`);
+});
